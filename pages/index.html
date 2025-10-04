@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huya Weather - Meteorological Dashboard</title>
+    <link rel="icon" type="image/png" href="../images/logo-huya.png">
+    <link rel="shortcut icon" type="image/png" href="../images/logo-huya.png">
+    <link rel="apple-touch-icon" href="../images/logo-huya.png">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/download-styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-icon">
+            <i class="fas fa-th"></i>
+        </div>
+        <div class="sidebar-icon">
+            <i class="fas fa-download"></i>
+        </div>
+        <div class="sidebar-icon">
+            <i class="fas fa-users"></i>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="../images/logo-huya.png" alt="Huya Weather Logo" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Huya Weather</h1>
+                        <p>Meteorological prediction dashboard</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="calculate-btn">Calculate</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Date Selection -->
+                <div class="date-selection">
+                    <div class="date-input-group">
+                        <label for="start-date">Start Date</label>
+                        <div class="date-input-wrapper">
+                            <input type="date" id="start-date" value="2025-01-01">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div class="date-input-group">
+                        <label for="end-date">End Date</label>
+                        <div class="date-input-wrapper">
+                            <input type="date" id="end-date" value="2025-01-04">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Weather Card -->
+                <div class="current-weather-card">
+                    <div class="weather-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="temperature">31°C</div>
+                    <div class="weather-condition">Cloudy & Sunny</div>
+                    <div class="location-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>6.2454, 294.1825</span>
+                    </div>
+                    <div class="date-info">
+                        <i class="fas fa-calendar"></i>
+                        <span>Sat, Oct 4</span>
+                    </div>
+                </div>
+
+                <!-- Weather Metrics -->
+                <div class="weather-metrics">
+                    <!-- Wind Speed -->
+                    <div class="metric-card">
+                        <div class="metric-icon wind">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">Wind Speed</div>
+                            <div class="metric-value">5.8 km/h</div>
+                        </div>
+                        <div class="metric-unit">
+                            <select>
+                                <option value="km/h">km/h</option>
+                                <option value="m/s">m/s</option>
+                                <option value="mph">mph</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Humidity -->
+                    <div class="metric-card">
+                        <div class="metric-icon humidity">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">Humidity</div>
+                            <div class="metric-value">49.9%</div>
+                        </div>
+                        <div class="metric-unit">
+                            <select>
+                                <option value="%">%</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Radiación UV -->
+                    <div class="metric-card">
+                        <div class="metric-icon uv">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">Radiación UV</div>
+                            <div class="metric-value">8.5 UV</div>
+                        </div>
+                        <div class="metric-unit">
+                            <select>
+                                <option value="UV">UV</option>
+                                <option value="Index">Index</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Pressure -->
+                    <div class="metric-card">
+                        <div class="metric-icon pressure">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">Pressure</div>
+                            <div class="metric-value">1013 hPa</div>
+                        </div>
+                        <div class="metric-unit">
+                            <select>
+                                <option value="hPa">hPa</option>
+                                <option value="atm">atm</option>
+                                <option value="bar">bar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Air Quality -->
+                    <div class="metric-card">
+                        <div class="metric-icon air-quality">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-label">Air Quality</div>
+                            <div class="metric-value">42 AQI</div>
+                        </div>
+                        <div class="metric-unit">
+                            <select>
+                                <option value="AQI">AQI</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <div class="map-section">
+                    <h3>Select Location</h3>
+                    <p>Click on the map to place a pin</p>
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Time Series Chart Section -->
+    <div class="chart-section">
+        <div class="chart-header">
+            <h2>Time Series Analysis</h2>
+            <p>Visualize meteorological data trends over time</p>
+        </div>
+        
+        <div class="chart-controls">
+            <div class="variable-selection">
+                <h3>Select Variable</h3>
+                <div class="variable-options">
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="temperature" checked>
+                        <span class="variable-label">
+                            <i class="fas fa-thermometer-half"></i>
+                            Temperature
+                        </span>
+                    </label>
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="humidity">
+                        <span class="variable-label">
+                            <i class="fas fa-tint"></i>
+                            Humidity
+                        </span>
+                    </label>
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="wind">
+                        <span class="variable-label">
+                            <i class="fas fa-wind"></i>
+                            Wind Speed
+                        </span>
+                    </label>
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="pressure">
+                        <span class="variable-label">
+                            <i class="fas fa-chart-line"></i>
+                            Pressure
+                        </span>
+                    </label>
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="uv">
+                        <span class="variable-label">
+                            <i class="fas fa-sun"></i>
+                            UV Radiation
+                        </span>
+                    </label>
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="air-quality">
+                        <span class="variable-label">
+                            <i class="fas fa-check-circle"></i>
+                            Air Quality
+                        </span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="time-aggregation">
+                <h3>Time Aggregation</h3>
+                <div class="aggregation-options">
+                    <label class="aggregation-option">
+                        <input type="radio" name="time-aggregation" value="daily" checked>
+                        <span class="aggregation-label">Daily</span>
+                    </label>
+                    <label class="aggregation-option">
+                        <input type="radio" name="time-aggregation" value="weekly">
+                        <span class="aggregation-label">Weekly</span>
+                    </label>
+                    <label class="aggregation-option">
+                        <input type="radio" name="time-aggregation" value="monthly">
+                        <span class="aggregation-label">Monthly</span>
+                    </label>
+                    <label class="aggregation-option">
+                        <input type="radio" name="time-aggregation" value="yearly">
+                        <span class="aggregation-label">Yearly</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="chart-actions">
+                <button class="generate-chart-btn">
+                    <i class="fas fa-chart-line"></i>
+                    Generate Chart
+                </button>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="timeSeriesChart"></canvas>
+            <div class="chart-loading" id="chartLoading" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Generating chart...</p>
+            </div>
+            <div class="chart-error" id="chartError" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Error generating chart. Please try again.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

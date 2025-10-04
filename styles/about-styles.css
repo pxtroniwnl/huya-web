@@ -1,0 +1,504 @@
+/* Estilos específicos para la página Sobre Nosotros */
+
+/* Sidebar activo */
+.sidebar-icon.active {
+    background-color: var(--rosa-vibrante);
+    transform: scale(1.1);
+}
+
+.sidebar-icon.active i {
+    color: white;
+}
+
+/* Botón de regreso */
+.back-btn {
+    background: linear-gradient(135deg, #1A2332, #2A3441);
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--huya-light-blue);
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #2A3441, #1A2332);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 168, 255, 0.3);
+}
+
+/* Introducción del equipo */
+.team-intro {
+    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid var(--huya-border);
+    text-align: center;
+}
+
+.team-intro h2 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.team-intro p {
+    color: #B0B0B0;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Grid del equipo */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+    justify-items: center;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tarjetas del equipo */
+.team-card {
+    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);
+    border-radius: 15px;
+    padding: 35px;
+    border: 1px solid var(--huya-border);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--huya-light-blue);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover::before {
+    transform: scaleX(1);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 168, 255, 0.2);
+    border-color: var(--huya-light-blue);
+}
+
+/* Header de la tarjeta */
+.team-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.team-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.team-photo:hover {
+    transform: scale(1.1);
+}
+
+/* Efectos especiales para las fotos */
+.team-card.ux-ui .team-avatar {
+    border: 3px solid #E74C3C;
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+}
+
+.team-card.frontend .team-avatar {
+    border: 3px solid #27AE60;
+    box-shadow: 0 0 20px rgba(39, 174, 96, 0.3);
+}
+
+.team-card.ux-ui:hover .team-avatar {
+    box-shadow: 0 0 30px rgba(231, 76, 60, 0.5);
+}
+
+.team-card.frontend:hover .team-avatar {
+    box-shadow: 0 0 30px rgba(39, 174, 96, 0.5);
+}
+
+/* Colores específicos por rol */
+
+.team-card.backend .team-avatar {
+    background: linear-gradient(135deg, #8E44AD, #9B59B6);
+    box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
+}
+
+.team-card.ux-ui .team-avatar {
+    background: linear-gradient(135deg, #E74C3C, #FF6B6B);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.team-card.frontend .team-avatar {
+    background: linear-gradient(135deg, #27AE60, #2ECC71);
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.team-info h3 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.team-info .role {
+    color: var(--huya-light-blue);
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.team-description {
+    margin-bottom: 25px;
+}
+
+.team-description p {
+    color: #B0B0B0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Skills */
+.team-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill {
+    background: rgba(0, 168, 255, 0.2);
+    color: var(--huya-light-blue);
+    padding: 6px 16px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid rgba(0, 168, 255, 0.3);
+    margin: 2px;
+}
+
+/* Sección de misión */
+.mission-section {
+    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid var(--huya-border);
+    text-align: center;
+}
+
+.mission-section h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.mission-section p {
+    color: #B0B0B0;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Sección de valores */
+.values-section {
+    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid var(--huya-border);
+}
+
+.values-section h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.value-item {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.value-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 168, 255, 0.2);
+}
+
+.value-item i {
+    font-size: 32px;
+    color: var(--huya-light-blue);
+    margin-bottom: 15px;
+}
+
+.value-item h3 {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.value-item p {
+    color: #B0B0B0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Animaciones */
+.team-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.team-card:nth-child(1) { animation-delay: 0.1s; }
+.team-card:nth-child(2) { animation-delay: 0.2s; }
+.team-card:nth-child(3) { animation-delay: 0.3s; }
+.team-card:nth-child(4) { animation-delay: 0.4s; }
+.team-card:nth-child(5) { animation-delay: 0.5s; }
+.team-card:nth-child(6) { animation-delay: 0.6s; }
+
+.value-item {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.value-item:nth-child(1) { animation-delay: 0.1s; }
+.value-item:nth-child(2) { animation-delay: 0.2s; }
+.value-item:nth-child(3) { animation-delay: 0.3s; }
+.value-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Efectos especiales - Removidos para Jasen */
+
+/* Responsive */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .team-card {
+        padding: 25px;
+        min-height: auto;
+    }
+    
+    .team-card-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .team-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 32px;
+    }
+    
+    .team-info h3 {
+        font-size: 20px;
+    }
+    
+    .team-info .role {
+        font-size: 14px;
+    }
+    
+    .team-description p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-intro,
+    .mission-section,
+    .values-section {
+        padding: 20px;
+    }
+}
+
+/* Bottom Section 2x1 */
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+/* Team Section */
+.team-section {
+    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);
+    border-radius: 12px;
+    padding: 40px;
+    border: 1px solid var(--huya-border);
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.team-section h2 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.team-section p {
+    color: #B0B0B0;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Sección de aliados */
+.partners-section {
+    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);
+    border-radius: 12px;
+    padding: 40px;
+    border: 1px solid var(--huya-border);
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.partners-section h2 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.partners-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.partner-logo {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    min-width: 200px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.partner-logo:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 168, 255, 0.2);
+}
+
+.partner-image {
+    max-width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+    filter: brightness(0.9);
+    transition: all 0.3s ease;
+}
+
+.partner-name {
+    color: #B0B0B0;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.partner-logo:hover .partner-image {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+/* Responsive para aliados */
+@media (max-width: 768px) {
+    .bottom-section {
+        gap: 20px;
+    }
+    
+    .team-section,
+    .partners-section {
+        padding: 30px 20px;
+    }
+    
+    .partners-logos {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .partner-logo {
+        min-width: 150px;
+        min-height: 120px;
+        padding: 20px;
+    }
+    
+    .partner-image {
+        max-height: 80px;
+    }
+}

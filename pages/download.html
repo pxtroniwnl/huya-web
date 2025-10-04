@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huya Weather - Data Download</title>
+    <link rel="icon" type="image/png" href="../images/logo-huya.png">
+    <link rel="shortcut icon" type="image/png" href="../images/logo-huya.png">
+    <link rel="apple-touch-icon" href="../images/logo-huya.png">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/download-styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-icon">
+            <i class="fas fa-th"></i>
+        </div>
+        <div class="sidebar-icon active">
+            <i class="fas fa-download"></i>
+        </div>
+        <div class="sidebar-icon">
+            <i class="fas fa-users"></i>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="../images/logo-huya.png" alt="Huya Weather Logo" class="logo-image">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Huya Weather</h1>
+                        <p>Meteorological data download</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Date Selection -->
+                <div class="date-selection">
+                    <div class="date-input-group">
+                        <label for="start-date">Start Date</label>
+                        <div class="date-input-wrapper">
+                            <input type="date" id="start-date" value="2025-01-01">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div class="date-input-group">
+                        <label for="end-date">End Date</label>
+                        <div class="date-input-wrapper">
+                            <input type="date" id="end-date" value="2025-01-04">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Variables Selection -->
+                <div class="variables-selection">
+                    <h3>Select Variables</h3>
+                    <div class="variables-grid">
+                        <div class="variable-item">
+                            <input type="checkbox" id="temperature" checked>
+                            <label for="temperature">
+                                <i class="fas fa-thermometer-half"></i>
+                                Temperature
+                            </label>
+                        </div>
+                        <div class="variable-item">
+                            <input type="checkbox" id="humidity" checked>
+                            <label for="humidity">
+                                <i class="fas fa-tint"></i>
+                                Humidity
+                            </label>
+                        </div>
+                        <div class="variable-item">
+                            <input type="checkbox" id="wind-speed" checked>
+                            <label for="wind-speed">
+                                <i class="fas fa-wind"></i>
+                                Wind Speed
+                            </label>
+                        </div>
+                        <div class="variable-item">
+                            <input type="checkbox" id="pressure" checked>
+                            <label for="pressure">
+                                <i class="fas fa-chart-line"></i>
+                                Atmospheric Pressure
+                            </label>
+                        </div>
+                        <div class="variable-item">
+                            <input type="checkbox" id="uv-index" checked>
+                            <label for="uv-index">
+                                <i class="fas fa-sun"></i>
+                                UV Radiation
+                            </label>
+                        </div>
+                        <div class="variable-item">
+                            <input type="checkbox" id="air-quality" checked>
+                            <label for="air-quality">
+                                <i class="fas fa-leaf"></i>
+                                Air Quality
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Format Selection -->
+                <div class="format-selection">
+                    <h3>Download Format</h3>
+                    <div class="format-options">
+                        <div class="format-item">
+                            <input type="radio" id="csv" name="format" value="csv" checked>
+                            <label for="csv">
+                                <i class="fas fa-file-csv"></i>
+                                CSV
+                            </label>
+                        </div>
+                        <div class="format-item">
+                            <input type="radio" id="json" name="format" value="json">
+                            <label for="json">
+                                <i class="fas fa-file-code"></i>
+                                JSON
+                            </label>
+                        </div>
+                        <div class="format-item">
+                            <input type="radio" id="excel" name="format" value="excel">
+                            <label for="excel">
+                                <i class="fas fa-file-excel"></i>
+                                Excel
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Download Button -->
+                <div class="download-section">
+                    <button class="download-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                        Download Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <div class="map-section">
+                    <h3>Select Location</h3>
+                    <p>Click on the map to select the data location</p>
+                    <div id="map"></div>
+                    <div class="location-info" id="locationInfo">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Click on the map to select location</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/download.js"></script>
+</body>
+</html>
