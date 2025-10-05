@@ -20,53 +20,53 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Barra lateral de navegación fija -->
+    <!-- Fixed sidebar navigation -->
     <div class="sidebar">
-        <!-- Icono de dashboard principal -->
+        <!-- Main dashboard icon -->
         <div class="sidebar-icon">
             <i class="fas fa-th"></i>
         </div>
-        <!-- Icono de descarga de datos -->
+        <!-- Data download icon -->
         <div class="sidebar-icon">
             <i class="fas fa-download"></i>
         </div>
-        <!-- Icono de información del equipo -->
+        <!-- Team info icon -->
         <div class="sidebar-icon">
             <i class="fas fa-users"></i>
         </div>
     </div>
 
-    <!-- Contenedor principal de la aplicación -->
+    <!-- Main application container -->
     <div class="main-container">
-        <!-- Cabecera de la aplicación -->
+        <!-- Application header -->
         <header class="header">
-            <!-- Sección izquierda del header con logo y título -->
+            <!-- Left header section with logo and title -->
             <div class="header-left">
                 <div class="logo">
-                    <!-- Contenedor del icono del logo -->
+                    <!-- Logo icon container -->
                     <div class="logo-icon">
                         <img src="../images/logo-huya.png" alt="Huya Weather Logo" class="logo-image">
                     </div>
-                    <!-- Contenedor del texto del logo -->
+                    <!-- Logo text container -->
                     <div class="logo-text">
                         <h1>Huya Weather</h1>
                         <p>Meteorological prediction dashboard</p>
                     </div>
                 </div>
             </div>
-            <!-- Sección derecha del header con botón de acción -->
+            <!-- Right header section with action button -->
             <div class="header-right">
                 <button class="calculate-btn">Calculate</button>
             </div>
         </header>
 
-        <!-- Contenido principal de la aplicación -->
+        <!-- Main application content -->
         <div class="main-content">
-            <!-- Columna izquierda con controles y métricas -->
+            <!-- Left column with controls and metrics -->
             <div class="left-column">
-                <!-- Sección de selección de fechas para análisis temporal -->
+                <!-- Date selection for time series analysis -->
                 <div class="date-selection">
-                    <!-- Grupo de entrada para fecha de inicio -->
+                    <!-- Start date input group -->
                     <div class="date-input-group">
                         <label for="start-date">Start Date</label>
                         <div class="date-input-wrapper">
@@ -74,7 +74,7 @@
                             <i class="fas fa-calendar-alt"></i>
                         </div>
                     </div>
-                    <!-- Grupo de entrada para fecha de fin -->
+                    <!-- End date input group -->
                     <div class="date-input-group">
                         <label for="end-date">End Date</label>
                         <div class="date-input-wrapper">
@@ -84,42 +84,42 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta de clima actual con información principal -->
+                <!-- Current weather card with main information -->
                 <div class="current-weather-card">
-                    <!-- Icono representativo del clima actual -->
+                    <!-- Current weather icon -->
                     <div class="weather-icon">
                         <i class="fas fa-sun"></i>
                     </div>
-                    <!-- Temperatura actual -->
+                    <!-- Current temperature -->
                     <div class="temperature">31°C</div>
-                    <!-- Condición climática actual -->
+                    <!-- Current weather condition -->
                     <div class="weather-condition">Cloudy & Sunny</div>
-                    <!-- Información de ubicación geográfica -->
+                    <!-- Location info -->
                     <div class="location-info">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>6.2454, 294.1825</span>
                     </div>
-                    <!-- Información de fecha actual -->
+                    <!-- Current date info -->
                     <div class="date-info">
                         <i class="fas fa-calendar"></i>
                         <span>Sat, Oct 4</span>
                     </div>
                 </div>
 
-                <!-- Grid de métricas meteorológicas en formato 2x2 -->
+                <!-- 2x2 grid of weather metrics -->
                 <div class="weather-metrics">
-                    <!-- Tarjeta de métrica: Porcentaje de Precipitación -->
+                    <!-- Metric card: Precipitation Percentage -->
                     <div class="metric-card">
-                        <!-- Icono representativo de precipitación -->
+                        <!-- Precipitation icon -->
                         <div class="metric-icon precipitation">
                             <i class="fas fa-cloud-rain"></i>
                         </div>
-                        <!-- Contenido de la métrica -->
+                        <!-- Metric content -->
                         <div class="metric-content">
-                            <div class="metric-label">Porcentaje Precipitación</div>
+                            <div class="metric-label">Precipitation Percentage</div>
                             <div class="metric-value">25%</div>
                         </div>
-                        <!-- Selector de unidades para la métrica -->
+                        <!-- Unit selector for the metric -->
                         <div class="metric-unit">
                             <select>
                                 <option value="%">%</option>
@@ -129,18 +129,18 @@
                         </div>
                     </div>
 
-                    <!-- Tarjeta de métrica: Porcentaje de Humedad -->
+                    <!-- Metric card: Humidity Percentage -->
                     <div class="metric-card">
-                        <!-- Icono representativo de humedad -->
+                        <!-- Humidity icon -->
                         <div class="metric-icon humidity">
                             <i class="fas fa-tint"></i>
                         </div>
-                        <!-- Contenido de la métrica -->
+                        <!-- Metric content -->
                         <div class="metric-content">
-                            <div class="metric-label">Porcentaje Humedad</div>
+                            <div class="metric-label">Humidity Percentage</div>
                             <div class="metric-value">49.9%</div>
                         </div>
-                        <!-- Selector de unidades para la métrica -->
+                        <!-- Unit selector for the metric -->
                         <div class="metric-unit">
                             <select>
                                 <option value="%">%</option>
@@ -148,18 +148,18 @@
                         </div>
                     </div>
 
-                    <!-- Tarjeta de métrica: Presión Atmosférica -->
+                    <!-- Metric card: Atmospheric Pressure -->
                     <div class="metric-card">
-                        <!-- Icono representativo de presión -->
+                        <!-- Pressure icon -->
                         <div class="metric-icon pressure">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <!-- Contenido de la métrica -->
+                        <!-- Metric content -->
                         <div class="metric-content">
-                            <div class="metric-label">Presión Atmosférica</div>
+                            <div class="metric-label">Atmospheric Pressure</div>
                             <div class="metric-value">1013 hPa</div>
                         </div>
-                        <!-- Selector de unidades para la métrica -->
+                        <!-- Unit selector for the metric -->
                         <div class="metric-unit">
                             <select>
                                 <option value="hPa">hPa</option>
@@ -169,18 +169,18 @@
                         </div>
                     </div>
 
-                    <!-- Tarjeta de métrica: Velocidad del Viento -->
+                    <!-- Metric card: Wind Speed -->
                     <div class="metric-card">
-                        <!-- Icono representativo de viento -->
+                        <!-- Wind icon -->
                         <div class="metric-icon wind">
                             <i class="fas fa-wind"></i>
                         </div>
-                        <!-- Contenido de la métrica -->
+                        <!-- Metric content -->
                         <div class="metric-content">
-                            <div class="metric-label">Velocidad Viento</div>
+                            <div class="metric-label">Wind Speed</div>
                             <div class="metric-value">5.8 km/h</div>
                         </div>
-                        <!-- Selector de unidades para la métrica -->
+                        <!-- Unit selector for the metric -->
                         <div class="metric-unit">
                             <select>
                                 <option value="km/h">km/h</option>
@@ -192,9 +192,9 @@
                 </div>
             </div>
 
-            <!-- Columna derecha con mapa interactivo -->
+            <!-- Right column with interactive map -->
             <div class="right-column">
-                <!-- Sección del mapa para selección de ubicación -->
+                <!-- Map section to select location -->
                 <div class="map-section">
                     <h3>Select Location</h3>
                     <p>Click on the map to place a pin</p>
