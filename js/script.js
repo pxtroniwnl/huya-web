@@ -613,6 +613,10 @@ function generateDataPoints(startDate, endDate, aggregation) {
             case 'air-quality':
                 value = Math.min(500, Math.max(0, Math.round(value * 0.8)));
                 break;
+    case 'precipitation':
+        // Simulación simple de porcentaje de precipitación (0-100)
+        value = Math.min(100, Math.max(0, Math.round(60 * randomFactor)));
+        break;
         }
         
         points.push({
@@ -668,7 +672,8 @@ function createTimeSeriesChart(chartData, variable, aggregation) {
         wind: 'Wind Speed (km/h)',
         pressure: 'Pressure (hPa)',
         uv: 'UV Index',
-        'air-quality': 'Air Quality (AQI)'
+        'air-quality': 'Air Quality (AQI)',
+        precipitation: 'Precipitation (%)'
     };
     
     const variableColors = {
@@ -677,7 +682,8 @@ function createTimeSeriesChart(chartData, variable, aggregation) {
         wind: '#FF6CAB',
         pressure: '#FF6CAB',
         uv: '#FF6CAB',
-        'air-quality': '#FF6CAB'
+        'air-quality': '#FF6CAB',
+        precipitation: '#FF6CAB'
     };
     
     timeSeriesChart = new Chart(ctx, {
