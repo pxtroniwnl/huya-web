@@ -188,6 +188,28 @@
     letter-spacing: 0.5px;
 }
 
+/* Email estilo UI consistente */
+.team-info .email {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #FF6CAB; /* rosa vibrante del tema */
+}
+
+.team-info .email a {
+    color: #FF6CAB;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255, 108, 171, 0.4);
+}
+
+.team-info .email a:hover {
+    color: #FF4A8A;
+    border-bottom-color: rgba(255, 74, 138, 0.6);
+}
+
+.team-info .email i {
+    margin-right: 6px;
+}
+
 .team-description {
     margin-bottom: 25px;
 }
