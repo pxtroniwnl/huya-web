@@ -112,14 +112,7 @@ function setupEventListeners() {
     startDate.addEventListener('change', validateDates);
     endDate.addEventListener('change', validateDates);
     
-    // Seleccionar todas las variables
-    const selectAllBtn = document.createElement('button');
-    selectAllBtn.textContent = 'Select All';
-    selectAllBtn.className = 'select-all-btn';
-    selectAllBtn.addEventListener('click', toggleAllVariables);
-    
-    const variablesSection = document.querySelector('.variables-selection');
-    variablesSection.appendChild(selectAllBtn);
+    // Eliminar funcionalidad de "Select All" (no se agrega botón)
 }
 
 // Establecer fechas por defecto
@@ -155,18 +148,7 @@ function updateLocationInfo(lat, lng) {
     `;
 }
 
-// Alternar todas las variables
-function toggleAllVariables() {
-    const checkboxes = document.querySelectorAll('.variable-item input[type="checkbox"]');
-    const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-    
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = !allChecked;
-    });
-    
-    const btn = document.querySelector('.select-all-btn');
-    btn.textContent = allChecked ? 'Select All' : 'Deselect All';
-}
+// (Función de alternar todas eliminada por requerimiento)
 
 // Descargar datos
 async function downloadData() {
