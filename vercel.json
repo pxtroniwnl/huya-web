@@ -1,0 +1,23 @@
+{
+  "functions": {
+    "backend/calculate_weather.php": {
+      "runtime": "php@8.2"
+    }
+  },
+  "builds": [
+    {
+      "src": "backend/python.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/backend/(.*)",
+      "dest": "/backend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
