@@ -1,3 +1,6 @@
+# Ignorar instaladores y binarios en la carpeta de imágenes
+images/*.exe
+
 # Dependencies
 node_modules/
 npm-debug.log*
