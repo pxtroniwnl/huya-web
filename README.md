@@ -18,6 +18,16 @@ Huya Weather ofrece un flujo completo para que un usuario seleccione ubicación 
 
 > Nota: En esta versión de demostración, los datos se generan de forma simulada en el frontend para permitir una navegación fluida sin dependencias externas. La arquitectura está preparada para conectarse a APIs/servicios reales.
 
+<p align="center">
+  <img src="images/logo-huya.png" alt="Huya Weather - logo" width="120" />
+</p>
+
+### Capturas de pantalla
+
+<p align="center">
+  <img src="images/nasa.webp" alt="Dashboard preview" width="520" />
+</p>
+
 ## 2) Características principales
 
 - Mapa interactivo (Leaflet) para seleccionar coordenadas de interés.
