@@ -66,7 +66,7 @@ body {
 
 /* Efecto hover para iconos de la barra lateral */
 .sidebar-icon:hover {
-    background-color: #3A3A5C;        /* Fondo más claro al pasar el mouse */
+    background-color: rgba(255, 108, 171, 0.2);        /* Hover rosa consistente */
 }
 
 /* Estilos para los iconos FontAwesome */
@@ -712,7 +712,7 @@ body {
 /* Efecto hover para iconos del sidebar */
 .sidebar-icon:hover {
     transform: scale(1.1);            /* Escala al pasar el mouse */
-    background-color: #3A3A5C;
+    background-color: rgba(255, 108, 171, 0.2);
 }
 
 /* ===== SECCIÓN DE GRÁFICOS DE SERIES TEMPORALES ===== */
