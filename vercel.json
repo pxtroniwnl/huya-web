@@ -1,10 +1,9 @@
 {
-  "functions": {
-    "backend/calculate_weather.php": {
-      "runtime": "php@8.2"
-    }
-  },
   "builds": [
+    {
+      "src": "backend/calculate_weather.php",
+      "use": "@vercel/php"
+    },
     {
       "src": "backend/python.py",
       "use": "@vercel/python"
