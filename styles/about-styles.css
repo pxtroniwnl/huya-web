@@ -114,7 +114,8 @@
 .team-avatar {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    border-radius: 50%; /* circular */
+    border: 2px solid rgba(0, 0, 0, 0.6); /* borde uniforme negro */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,7 +130,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 50%; /* circular */
     transition: transform 0.3s ease;
 }
 
@@ -138,22 +139,12 @@
 }
 
 /* Efectos especiales para las fotos */
-.team-card.ux-ui .team-avatar {
-    border: 3px solid #E74C3C;
-    box-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
-}
-
-.team-card.frontend .team-avatar {
-    border: 3px solid #27AE60;
-    box-shadow: 0 0 20px rgba(39, 174, 96, 0.3);
-}
-
-.team-card.ux-ui:hover .team-avatar {
-    box-shadow: 0 0 30px rgba(231, 76, 60, 0.5);
-}
-
-.team-card.frontend:hover .team-avatar {
-    box-shadow: 0 0 30px rgba(39, 174, 96, 0.5);
+/* Borde unificado para todos los roles (sin colores por rol) */
+.team-card.ux-ui .team-avatar,
+.team-card.frontend .team-avatar,
+.team-card.backend .team-avatar {
+    border: 2px solid rgba(0, 0, 0, 0.6) !important;
+    box-shadow: none !important;
 }
 
 /* Colores específicos por rol */
@@ -164,12 +155,12 @@
 }
 
 .team-card.ux-ui .team-avatar {
-    background: linear-gradient(135deg, #E74C3C, #FF6B6B);
+    background: linear-gradient(135deg, #8E44AD, #9B59B6);
     box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
 }
 
 .team-card.frontend .team-avatar {
-    background: linear-gradient(135deg, #27AE60, #2ECC71);
+    background: linear-gradient(135deg, #8E44AD, #9B59B6);
     box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
 }
 
@@ -186,6 +177,19 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+/* Carrera y afiliación */
+.team-info .degree {
+    color: #E0E0E0;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.team-info .affiliation {
+    color: #B0B0B0;
+    font-size: 13px;
+    margin-top: 2px;
 }
 
 /* Email estilo UI consistente */
