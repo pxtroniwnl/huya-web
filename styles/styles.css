@@ -1,9 +1,12 @@
+/* ===== RESET Y CONFIGURACIÓN GLOBAL ===== */
+/* Reset universal para eliminar márgenes y padding por defecto */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Configuración del cuerpo principal de la aplicación */
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--background-dark);
@@ -12,72 +15,82 @@ body {
     padding: 0;
 }
 
-/* Cambios a tonos oscuros para el fondo */
+/* ===== VARIABLES CSS PERSONALIZADAS ===== */
+/* Sistema de colores para tema oscuro profesional */
 :root {
-    --background-dark: #1E1E2E;
-    --card-dark: #2E2E3E;
-    --text-light: #E0E0E0;
-    --accent-dark: #7136AF;
-    --border-dark: #444455;
-    --rosa-vibrante: #FF6CAB;
-    --naranja-calido: #FFB86C;
-    --lila-vibrante: #B97AFF;
-    --morado-profundo: #1E1E2E;
-    --amarillo-pastel: #FFE76C;
+    /* Colores principales del tema oscuro */
+    --background-dark: #1E1E2E;        /* Fondo principal oscuro */
+    --card-dark: #2E2E3E;              /* Fondo de tarjetas */
+    --text-light: #E0E0E0;             /* Texto principal claro */
+    --accent-dark: #7136AF;            /* Color de acento morado */
+    --border-dark: #444455;            /* Bordes sutiles */
+    
+    /* Paleta de colores vibrantes para elementos interactivos */
+    --rosa-vibrante: #FF6CAB;          /* Rosa vibrante para botones y acentos */
+    --naranja-calido: #FFB86C;         /* Naranja cálido para elementos secundarios */
+    --lila-vibrante: #B97AFF;          /* Lila vibrante para gradientes */
+    --morado-profundo: #1E1E2E;        /* Morado profundo para fondos */
+    --amarillo-pastel: #FFE76C;        /* Amarillo pastel para destacados */
 }
 
-/* Sidebar */
+/* ===== BARRA LATERAL DE NAVEGACIÓN ===== */
+/* Barra lateral fija con iconos de navegación */
 .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 60px;
-    height: 100vh;
+    position: fixed;                   /* Posición fija en la pantalla */
+    left: 0;                          /* Alineada a la izquierda */
+    top: 0;                           /* Alineada al tope */
+    width: 60px;                      /* Ancho compacto */
+    height: 100vh;                    /* Altura completa de la ventana */
     background-color: var(--background-dark);
     color: var(--text-light);
-    display: flex;
+    display: flex;                    /* Layout flexbox vertical */
     flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
+    align-items: center;              /* Centrado horizontal */
+    padding-top: 20px;                /* Espaciado superior */
+    z-index: 1000;                    /* Capa superior */
+    transition: background-color 0.3s ease;  /* Transición suave */
 }
 
+/* Iconos individuales de la barra lateral */
 .sidebar-icon {
-    width: 40px;
+    width: 40px;                      /* Tamaño cuadrado */
     height: 40px;
-    display: flex;
+    display: flex;                    /* Centrado del icono */
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    margin-bottom: 20px;              /* Espaciado entre iconos */
+    cursor: pointer;                  /* Cursor de mano */
+    border-radius: 8px;               /* Bordes redondeados */
+    transition: background-color 0.3s ease;  /* Transición suave */
 }
 
+/* Efecto hover para iconos de la barra lateral */
 .sidebar-icon:hover {
-    background-color: #3A3A5C;
+    background-color: #3A3A5C;        /* Fondo más claro al pasar el mouse */
 }
 
+/* Estilos para los iconos FontAwesome */
 .sidebar-icon i {
-    font-size: 18px;
+    font-size: 18px;                  /* Tamaño del icono */
     color: var(--text-color);
 }
 
-/* Main Container */
+/* ===== CONTENEDOR PRINCIPAL ===== */
+/* Contenedor principal que se ajusta al sidebar */
 .main-container {
-    margin-left: 60px;
-    min-height: 100vh;
-    display: flex;
+    margin-left: 60px;                /* Margen para evitar solapamiento con sidebar */
+    min-height: 100vh;                /* Altura mínima completa */
+    display: flex;                    /* Layout flexbox vertical */
     flex-direction: column;
 }
 
-/* Header */
+/* ===== CABECERA DE LA APLICACIÓN ===== */
+/* Header principal con logo y botón de acción */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
+    display: flex;                    /* Layout flexbox horizontal */
+    justify-content: space-between;   /* Distribución espaciada */
+    align-items: center;              /* Centrado vertical */
+    padding: 20px 30px;               /* Espaciado interno */
     background-color: var(--card-dark);
     color: var(--text-light);
     border-bottom: 1px solid var(--border-dark);
@@ -86,20 +99,23 @@ body {
     font-weight: bold;
 }
 
+/* Sección izquierda del header con logo */
 .header-left {
     display: flex;
     align-items: center;
 }
 
+/* Contenedor del logo con imagen y texto */
 .logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 15px;                        /* Espaciado entre imagen y texto */
     background-color: transparent;
 }
 
+/* Contenedor del icono del logo */
 .logo-icon {
-    width: 50px;
+    width: 50px;                      /* Tamaño cuadrado */
     height: 50px;
     position: relative;
     display: flex;
@@ -107,55 +123,62 @@ body {
     justify-content: center;
 }
 
+/* Imagen del logo */
 .logo-image {
-    width: 100%;
+    width: 100%;                      /* Ocupa todo el contenedor */
     height: 100%;
-    object-fit: contain;
+    object-fit: contain;              /* Mantiene proporciones */
 }
 
+/* Texto del logo */
 .logo-text h1 {
-    font-size: 32px;
+    font-size: 32px;                  /* Título grande */
     font-weight: bold;
     color: var(--text-color);
     margin-bottom: 5px;
 }
 
 .logo-text p {
-    font-size: 14px;
+    font-size: 14px;                  /* Subtítulo más pequeño */
     color: #B0B0B0;
     font-weight: 300;
 }
 
+/* Sección derecha del header */
 .header-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 20px;                        /* Espaciado entre elementos */
 }
 
+/* Texto de ubicación */
 .location-text {
     color: var(--text-color);
     font-size: 16px;
 }
 
+/* Botón principal de cálculo */
 .calculate-btn {
-    background: #FF6CAB;
+    background: #FF6CAB;              /* Fondo rosa vibrante */
     color: var(--morado-profundo);
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 12px 24px;               /* Espaciado interno */
+    border-radius: 8px;               /* Bordes redondeados */
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease;  /* Transición suave */
 }
 
+/* Efecto hover para el botón de cálculo */
 .calculate-btn:hover {
-    transform: translateY(-2px);
-    background-color: #FF4A8A;
-    box-shadow: 0 4px 15px rgba(255, 108, 171, 0.4);
+    transform: translateY(-2px);      /* Elevación sutil */
+    background-color: #FF4A8A;        /* Color más intenso */
+    box-shadow: 0 4px 15px rgba(255, 108, 171, 0.4);  /* Sombra con color */
 }
 
-/* Ajustes de colores para el fondo del dashboard y la barra lateral */
+/* ===== CONFIGURACIÓN ADICIONAL DEL DASHBOARD ===== */
+/* Header del dashboard con tema oscuro */
 .dashboard-header {
     background-color: var(--background-dark);
     color: var(--text-light);
@@ -165,6 +188,7 @@ body {
     font-weight: bold;
 }
 
+/* Configuración adicional del sidebar */
 .sidebar {
     background-color: var(--background-dark);
     color: var(--text-light);
@@ -173,32 +197,37 @@ body {
     height: 100vh;
 }
 
-/* Main Content */
+/* ===== CONTENIDO PRINCIPAL ===== */
+/* Contenedor del contenido principal */
 .main-content {
-    display: flex;
-    flex: 1;
-    padding: 30px;
-    gap: 30px;
+    display: flex;                    /* Layout flexbox horizontal */
+    flex: 1;                          /* Ocupa espacio disponible */
+    padding: 30px;                    /* Espaciado interno */
+    gap: 30px;                        /* Espaciado entre columnas */
 }
 
-/* Left Column */
+/* ===== COLUMNA IZQUIERDA ===== */
+/* Columna izquierda con controles y métricas */
 .left-column {
-    flex: 1;
+    flex: 1;                          /* Ocupa espacio disponible */
     display: flex;
-    flex-direction: column;
-    gap: 25px;
+    flex-direction: column;           /* Layout vertical */
+    gap: 25px;                        /* Espaciado entre elementos */
 }
 
-/* Date Selection */
+/* ===== SELECCIÓN DE FECHAS ===== */
+/* Contenedor para selección de rango de fechas */
 .date-selection {
     display: flex;
-    gap: 20px;
+    gap: 20px;                        /* Espaciado entre inputs */
 }
 
+/* Grupo individual de entrada de fecha */
 .date-input-group {
-    flex: 1;
+    flex: 1;                          /* Ocupa espacio disponible */
 }
 
+/* Etiqueta del input de fecha */
 .date-input-group label {
     display: block;
     color: var(--text-color);
@@ -207,113 +236,129 @@ body {
     font-weight: 500;
 }
 
+/* Contenedor del input con icono */
 .date-input-wrapper {
-    position: relative;
+    position: relative;               /* Para posicionar el icono */
 }
 
+/* Input de fecha personalizado */
 .date-input-wrapper input {
-    width: 100%;
-    padding: 12px 40px 12px 15px;
-    background-color: #2D2D44;
-    border: 1px solid #3A3A5C;
-    border-radius: 8px;
+    width: 100%;                      /* Ancho completo */
+    padding: 12px 40px 12px 15px;     /* Espaciado interno con espacio para icono */
+    background-color: #2D2D44;        /* Fondo oscuro */
+    border: 1px solid #3A3A5C;        /* Borde sutil */
+    border-radius: 8px;               /* Bordes redondeados */
     color: var(--text-color);
     font-size: 14px;
 }
 
+/* Personalización del indicador de calendario */
 .date-input-wrapper input::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+    filter: invert(1);                /* Invierte colores para tema oscuro */
 }
 
+/* Icono de calendario */
 .date-input-wrapper i {
-    position: absolute;
-    right: 15px;
-    top: 50%;
+    position: absolute;               /* Posición absoluta */
+    right: 15px;                      /* Alineado a la derecha */
+    top: 50%;                         /* Centrado verticalmente */
     transform: translateY(-50%);
-    color: #B0B0B0;
+    color: #B0B0B0;                   /* Color gris */
     font-size: 14px;
 }
 
-/* Current Weather Card */
+/* ===== TARJETA DE CLIMA ACTUAL ===== */
+/* Tarjeta principal con información del clima actual */
 .current-weather-card {
-    background-color: #2D2D44;
-    border-radius: 12px;
-    padding: 30px;
-    text-align: center;
+    background-color: #2D2D44;        /* Fondo oscuro */
+    border-radius: 12px;              /* Bordes redondeados */
+    padding: 30px;                    /* Espaciado interno */
+    text-align: center;               /* Centrado del contenido */
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);
+    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);  /* Gradiente sutil */
     border: 1px solid var(--huya-light-blue);
 }
 
+/* Icono del clima actual */
 .weather-icon {
-    margin-bottom: 20px;
+    margin-bottom: 20px;              /* Espaciado inferior */
 }
 
+/* Estilos del icono del clima */
 .weather-icon i {
-    color: #FF6CAB;
-    text-shadow: 0 0 20px rgba(255, 108, 171, 0.5);
-    font-size: 80px;
+    color: #FF6CAB;                   /* Color rosa vibrante */
+    text-shadow: 0 0 20px rgba(255, 108, 171, 0.5);  /* Sombra con brillo */
+    font-size: 80px;                  /* Tamaño grande */
 }
 
+/* Temperatura actual */
 .temperature {
-    font-size: 72px;
+    font-size: 72px;                  /* Tamaño muy grande */
     font-weight: bold;
     color: var(--text-color);
     margin-bottom: 10px;
-    line-height: 1;
+    line-height: 1;                   /* Sin espaciado de línea */
 }
 
+/* Condición climática */
 .weather-condition {
-    font-size: 18px;
+    font-size: 18px;                  /* Tamaño mediano */
     color: var(--text-color);
     margin-bottom: 25px;
-    font-weight: 300;
+    font-weight: 300;                 /* Peso ligero */
 }
 
+/* Información de ubicación y fecha */
 .location-info, .date-info {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    color: #B0B0B0;
+    gap: 8px;                         /* Espaciado entre icono y texto */
+    color: #B0B0B0;                   /* Color gris */
     font-size: 14px;
     margin-bottom: 10px;
 }
 
+/* Iconos de información */
 .location-info i, .date-info i {
-    font-size: 12px;
+    font-size: 12px;                  /* Tamaño pequeño */
 }
 
-/* Weather Metrics */
+/* ===== MÉTRICAS DEL CLIMA ===== */
+/* Grid de métricas meteorológicas en formato 2x2 */
 .weather-metrics {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    display: grid;                    /* Layout de grid CSS */
+    grid-template-columns: 1fr 1fr;   /* Dos columnas iguales */
+    grid-template-rows: 1fr 1fr;      /* Dos filas iguales */
+    gap: 15px;                        /* Espaciado entre tarjetas */
 }
 
+/* Tarjeta individual de métrica */
 .metric-card {
-    background-color: #2D2D44;
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);
+    background-color: #2D2D44;        /* Fondo oscuro */
+    border-radius: 12px;              /* Bordes redondeados */
+    padding: 20px;                    /* Espaciado interno */
+    display: flex;                    /* Layout flexbox horizontal */
+    align-items: center;              /* Centrado vertical */
+    gap: 15px;                        /* Espaciado entre elementos */
+    background: linear-gradient(135deg, #1A2332 0%, #2A3441 100%);  /* Gradiente sutil */
     border: 1px solid var(--huya-border);
 }
 
+/* Icono de la métrica */
 .metric-icon {
-    width: 50px;
+    width: 50px;                      /* Tamaño cuadrado */
     height: 50px;
-    border-radius: 50%;
+    border-radius: 50%;               /* Forma circular */
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    background-color: #FF6CAB;
+    flex-shrink: 0;                   /* No se encoge */
+    background-color: #FF6CAB;        /* Fondo rosa por defecto */
 }
 
+/* Iconos específicos con gradientes y sombras */
 .metric-icon.wind {
     background: linear-gradient(135deg, #FF6CAB, #FF4A8A);
     box-shadow: 0 4px 15px rgba(255, 108, 171, 0.3);
@@ -339,16 +384,19 @@ body {
     box-shadow: 0 4px 15px rgba(255, 108, 171, 0.3);
 }
 
+/* Iconos FontAwesome dentro de las métricas */
 .metric-icon i {
-    color: white;
-    font-size: 20px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: white;                     /* Color blanco */
+    font-size: 20px;                  /* Tamaño del icono */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);  /* Sombra sutil */
 }
 
+/* Contenido de la métrica */
 .metric-content {
-    flex: 1;
+    flex: 1;                          /* Ocupa espacio disponible */
 }
 
+/* Etiqueta de la métrica */
 .metric-label {
     color: var(--text-color);
     font-size: 14px;
@@ -356,40 +404,46 @@ body {
     font-weight: 500;
 }
 
+/* Valor de la métrica */
 .metric-value {
     color: var(--text-color);
-    font-size: 24px;
+    font-size: 24px;                  /* Tamaño grande */
     font-weight: bold;
 }
 
+/* Selector de unidades */
 .metric-unit select {
-    background-color: #3A3A5C;
-    border: 1px solid #4A4A6C;
-    border-radius: 6px;
+    background-color: #3A3A5C;        /* Fondo oscuro */
+    border: 1px solid #4A4A6C;        /* Borde sutil */
+    border-radius: 6px;               /* Bordes redondeados */
     color: var(--text-color);
-    padding: 8px 12px;
+    padding: 8px 12px;                /* Espaciado interno */
     font-size: 14px;
     cursor: pointer;
 }
 
+/* Estado focus del selector */
 .metric-unit select:focus {
-    outline: none;
-    border-color: #00A8FF;
+    outline: none;                    /* Sin contorno por defecto */
+    border-color: #00A8FF;            /* Borde azul al enfocar */
 }
 
-/* Right Column */
+/* ===== COLUMNA DERECHA ===== */
+/* Columna derecha con mapa interactivo */
 .right-column {
-    flex: 1;
+    flex: 1;                          /* Ocupa espacio disponible */
     display: flex;
-    flex-direction: column;
+    flex-direction: column;           /* Layout vertical */
 }
 
+/* Sección del mapa */
 .map-section {
-    flex: 1;
+    flex: 1;                          /* Ocupa espacio disponible */
     display: flex;
     flex-direction: column;
 }
 
+/* Título de la sección del mapa */
 .map-section h3 {
     color: var(--text-color);
     font-size: 20px;
@@ -397,95 +451,108 @@ body {
     font-weight: 600;
 }
 
+/* Descripción del mapa */
 .map-section p {
-    color: #B0B0B0;
+    color: #B0B0B0;                   /* Color gris */
     font-size: 14px;
     margin-bottom: 20px;
 }
 
+/* Contenedor del mapa de Leaflet */
 #map {
-    flex: 1;
-    border-radius: 12px;
-    overflow: hidden;
-    min-height: 500px;
+    flex: 1;                          /* Ocupa espacio disponible */
+    border-radius: 12px;              /* Bordes redondeados */
+    overflow: hidden;                 /* Oculta desbordamiento */
+    min-height: 500px;                /* Altura mínima */
     border: 2px solid var(--huya-light-blue);
 }
 
-/* Leaflet Map Customization */
+/* ===== PERSONALIZACIÓN DEL MAPA LEAFLET ===== */
+/* Contenedor principal del mapa */
 .leaflet-container {
-    background-color: #2D2D44 !important;
+    background-color: #2D2D44 !important;  /* Fondo oscuro */
 }
 
+/* Controles de zoom del mapa */
 .leaflet-control-zoom a {
-    background-color: #2D2D44 !important;
+    background-color: #2D2D44 !important;  /* Fondo oscuro */
     color: var(--text-color) !important;
     border: 1px solid #3A3A5C !important;
 }
 
+/* Efecto hover en controles de zoom */
 .leaflet-control-zoom a:hover {
     background-color: #3A3A5C !important;
 }
 
+/* Atribución del mapa */
 .leaflet-control-attribution {
-    background-color: rgba(45, 45, 68, 0.8) !important;
+    background-color: rgba(45, 45, 68, 0.8) !important;  /* Fondo semi-transparente */
     color: #B0B0B0 !important;
     font-size: 11px !important;
 }
 
-/* Responsive Design */
+/* ===== DISEÑO RESPONSIVO ===== */
+/* Media query para pantallas medianas */
 @media (max-width: 1200px) {
     .main-content {
-        flex-direction: column;
+        flex-direction: column;       /* Cambia a layout vertical */
     }
     
     .right-column {
-        min-height: 400px;
+        min-height: 400px;            /* Altura mínima para el mapa */
     }
 }
 
+/* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
     .header {
-        flex-direction: column;
+        flex-direction: column;       /* Header vertical */
         gap: 20px;
         text-align: center;
     }
     
     .date-selection {
-        flex-direction: column;
+        flex-direction: column;       /* Selección de fechas vertical */
     }
     
     .main-content {
-        padding: 20px;
+        padding: 20px;                /* Menos padding en móviles */
     }
     
     .temperature {
-        font-size: 60px;
+        font-size: 60px;              /* Temperatura más pequeña */
     }
     
     .weather-icon i {
-        font-size: 60px;
+        font-size: 60px;              /* Icono más pequeño */
     }
 }
 
-/* Custom Scrollbar */
+/* ===== BARRA DE DESPLAZAMIENTO PERSONALIZADA ===== */
+/* Ancho de la barra de desplazamiento */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
+/* Fondo de la barra de desplazamiento */
 ::-webkit-scrollbar-track {
     background: #2D2D44;
 }
 
+/* Barra de desplazamiento */
 ::-webkit-scrollbar-thumb {
     background: #3A3A5C;
     border-radius: 4px;
 }
 
+/* Efecto hover en la barra de desplazamiento */
 ::-webkit-scrollbar-thumb:hover {
     background: #4A4A6C;
 }
 
-/* Animaciones CSS */
+/* ===== ANIMACIONES CSS ===== */
+/* Animación de aparición desde abajo */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -497,6 +564,7 @@ body {
     }
 }
 
+/* Animación de pulso */
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -509,6 +577,7 @@ body {
     }
 }
 
+/* Animación de brillo */
 @keyframes glow {
     0% {
         box-shadow: 0 0 5px rgba(0, 168, 255, 0.3);
@@ -521,6 +590,7 @@ body {
     }
 }
 
+/* Animación de deslizamiento desde la izquierda */
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -532,6 +602,7 @@ body {
     }
 }
 
+/* Animación de rebote */
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -544,61 +615,74 @@ body {
     }
 }
 
-/* Aplicar animaciones a elementos */
+/* ===== APLICACIÓN DE ANIMACIONES ===== */
+/* Animación del contenido principal */
 .main-content {
     animation: fadeInUp 0.8s ease-out;
 }
 
+/* Animación del sidebar */
 .sidebar {
     animation: slideInLeft 0.6s ease-out;
 }
 
+/* Animación del header */
 .header {
     animation: fadeInUp 0.6s ease-out;
 }
 
+/* Animación de la tarjeta de clima actual */
 .current-weather-card {
-    animation: fadeInUp 0.8s ease-out 0.2s both;
+    animation: fadeInUp 0.8s ease-out 0.2s both;  /* Con retraso */
 }
 
+/* Animación de las tarjetas de métricas */
 .metric-card {
     animation: fadeInUp 0.6s ease-out;
     transition: all 0.3s ease;
 }
 
+/* Retrasos escalonados para las tarjetas de métricas */
 .metric-card:nth-child(1) { animation-delay: 0.1s; }
 .metric-card:nth-child(2) { animation-delay: 0.2s; }
 .metric-card:nth-child(3) { animation-delay: 0.3s; }
 .metric-card:nth-child(4) { animation-delay: 0.4s; }
 .metric-card:nth-child(5) { animation-delay: 0.5s; }
 
+/* Animación del botón de cálculo */
 .calculate-btn {
-    animation: pulse 2s infinite;
+    animation: pulse 2s infinite;     /* Pulso continuo */
 }
 
+/* Efecto hover del botón de cálculo */
 .calculate-btn:hover {
-    animation: glow 1s infinite;
+    animation: glow 1s infinite;      /* Brillo al pasar el mouse */
 }
 
+/* Animación del icono del clima */
 .weather-icon i {
-    animation: bounce 2s infinite;
+    animation: bounce 2s infinite;    /* Rebote continuo */
 }
 
+/* Animación del logo */
 .logo-image {
-    animation: pulse 3s infinite;
+    animation: pulse 3s infinite;     /* Pulso lento */
 }
 
-/* Efectos hover mejorados */
+/* ===== EFECTOS HOVER MEJORADOS ===== */
+/* Efecto hover para tarjetas de métricas */
 .metric-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(0, 168, 255, 0.2);
+    transform: translateY(-5px) scale(1.02);  /* Elevación y escala */
+    box-shadow: 0 10px 25px rgba(0, 168, 255, 0.2);  /* Sombra azul */
 }
 
+/* Efecto hover para iconos de métricas */
 .metric-card:hover .metric-icon {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1) rotate(5deg);  /* Escala y rotación */
     transition: all 0.3s ease;
 }
 
+/* Efectos hover específicos para cada tipo de icono */
 .metric-card:hover .metric-icon.wind {
     box-shadow: 0 6px 20px rgba(255, 108, 171, 0.5);
 }
@@ -619,277 +703,313 @@ body {
     box-shadow: 0 6px 20px rgba(255, 108, 171, 0.5);
 }
 
+/* Efecto hover para la tarjeta de clima actual */
 .current-weather-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 168, 255, 0.3);
+    transform: translateY(-3px);      /* Elevación sutil */
+    box-shadow: 0 15px 35px rgba(0, 168, 255, 0.3);  /* Sombra azul */
 }
 
+/* Efecto hover para iconos del sidebar */
 .sidebar-icon:hover {
-    transform: scale(1.1);
+    transform: scale(1.1);            /* Escala al pasar el mouse */
     background-color: #3A3A5C;
 }
 
-/* ===== TIME SERIES CHART SECTION ===== */
+/* ===== SECCIÓN DE GRÁFICOS DE SERIES TEMPORALES ===== */
+/* Contenedor principal de la sección de gráficos */
 .chart-section {
-    background: linear-gradient(135deg, #1E1E2E 0%, #2D2D44 100%);
-    border-radius: 20px;
-    padding: 30px;
-    margin: 30px 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 108, 171, 0.2);
-    animation: fadeInUp 0.8s ease-out;
+    background: linear-gradient(135deg, #1E1E2E 0%, #2D2D44 100%);  /* Gradiente de fondo */
+    border-radius: 20px;              /* Bordes muy redondeados */
+    padding: 30px;                    /* Espaciado interno */
+    margin: 30px 20px;                /* Márgenes externos */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);  /* Sombra profunda */
+    border: 1px solid rgba(255, 108, 171, 0.2);  /* Borde sutil rosa */
+    animation: fadeInUp 0.8s ease-out;  /* Animación de entrada */
 }
 
+/* Cabecera de la sección de gráficos */
 .chart-header {
-    text-align: center;
-    margin-bottom: 30px;
-    margin-left: 80px; /* Add margin to avoid sidebar overlap */
+    text-align: center;               /* Centrado del texto */
+    margin-bottom: 30px;              /* Espaciado inferior */
+    margin-left: 80px;                /* Margen para evitar solapamiento con sidebar */
 }
 
+/* Título principal de la sección */
 .chart-header h2 {
-    color: #FF6CAB;
-    font-size: 2.2rem;
+    color: #FF6CAB;                   /* Color rosa vibrante */
+    font-size: 2.2rem;                /* Tamaño grande */
     margin-bottom: 10px;
-    font-weight: 700;
+    font-weight: 700;                 /* Peso muy bold */
 }
 
+/* Descripción de la sección */
 .chart-header p {
-    color: #B0B0B0;
+    color: #B0B0B0;                   /* Color gris */
     font-size: 1.1rem;
 }
 
+/* Controles de configuración del gráfico */
 .chart-controls {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 30px;
-    margin-bottom: 30px;
-    align-items: start;
-    margin-left: 80px; /* Add margin to avoid sidebar overlap */
+    display: grid;                    /* Layout de grid */
+    grid-template-columns: 2fr 1fr 1fr;  /* Tres columnas con proporciones */
+    gap: 30px;                        /* Espaciado entre columnas */
+    margin-bottom: 30px;              /* Espaciado inferior */
+    align-items: start;               /* Alineación superior */
+    margin-left: 80px;                /* Margen para evitar solapamiento con sidebar */
 }
 
+/* Títulos de los controles */
 .variable-selection h3,
 .time-aggregation h3 {
-    color: #FF6CAB;
+    color: #FF6CAB;                   /* Color rosa vibrante */
     font-size: 1.2rem;
     margin-bottom: 15px;
     font-weight: 600;
 }
 
+/* Opciones de variables meteorológicas */
 .variable-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    display: grid;                    /* Layout de grid */
+    grid-template-columns: repeat(3, 1fr);  /* Tres columnas iguales */
+    gap: 15px;                        /* Espaciado entre opciones */
 }
 
+/* Opción individual de variable */
 .variable-option {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    padding: 12px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
+    cursor: pointer;                  /* Cursor de mano */
+    padding: 12px;                    /* Espaciado interno */
+    border-radius: 10px;              /* Bordes redondeados */
+    background: rgba(255, 255, 255, 0.05);  /* Fondo semi-transparente */
+    border: 2px solid transparent;    /* Borde transparente */
+    transition: all 0.3s ease;        /* Transición suave */
 }
 
+/* Efecto hover para opciones de variable */
 .variable-option:hover {
-    background: rgba(255, 108, 171, 0.1);
-    border-color: rgba(255, 108, 171, 0.3);
-    transform: translateY(-2px);
+    background: rgba(255, 108, 171, 0.1);  /* Fondo rosa sutil */
+    border-color: rgba(255, 108, 171, 0.3);  /* Borde rosa */
+    transform: translateY(-2px);      /* Elevación sutil */
 }
 
+/* Ocultar radio buttons por defecto */
 .variable-option input[type="radio"] {
     display: none;
 }
 
+/* Estilo para opción seleccionada */
 .variable-option input[type="radio"]:checked + .variable-label {
-    color: #FF6CAB;
-    font-weight: 600;
+    color: #FF6CAB;                   /* Color rosa */
+    font-weight: 600;                 /* Peso bold */
 }
 
+/* Fondo para opción seleccionada */
 .variable-option input[type="radio"]:checked {
-    background: rgba(255, 108, 171, 0.15);
-    border-color: #FF6CAB;
+    background: rgba(255, 108, 171, 0.15);  /* Fondo rosa más intenso */
+    border-color: #FF6CAB;            /* Borde rosa */
 }
 
+/* Etiqueta de la variable */
 .variable-label {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #B0B0B0;
+    gap: 8px;                         /* Espaciado entre icono y texto */
+    color: #B0B0B0;                   /* Color gris */
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease;        /* Transición suave */
 }
 
+/* Iconos de las variables */
 .variable-label i {
     font-size: 1.1rem;
-    color: #FF6CAB;
+    color: #FF6CAB;                   /* Color rosa */
 }
 
+/* Opciones de agregación temporal */
 .aggregation-options {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column;           /* Layout vertical */
+    gap: 10px;                        /* Espaciado entre opciones */
 }
 
+/* Opción individual de agregación */
 .aggregation-option {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
+    cursor: pointer;                  /* Cursor de mano */
+    padding: 10px 15px;               /* Espaciado interno */
+    border-radius: 8px;               /* Bordes redondeados */
+    background: rgba(255, 255, 255, 0.05);  /* Fondo semi-transparente */
+    border: 2px solid transparent;    /* Borde transparente */
+    transition: all 0.3s ease;        /* Transición suave */
 }
 
+/* Efecto hover para opciones de agregación */
 .aggregation-option:hover {
-    background: rgba(255, 108, 171, 0.1);
-    border-color: rgba(255, 108, 171, 0.3);
+    background: rgba(255, 108, 171, 0.1);  /* Fondo rosa sutil */
+    border-color: rgba(255, 108, 171, 0.3);  /* Borde rosa */
 }
 
+/* Ocultar radio buttons de agregación */
 .aggregation-option input[type="radio"] {
     display: none;
 }
 
+/* Estilo para agregación seleccionada */
 .aggregation-option input[type="radio"]:checked + .aggregation-label {
-    color: #FF6CAB;
-    font-weight: 600;
+    color: #FF6CAB;                   /* Color rosa */
+    font-weight: 600;                 /* Peso bold */
 }
 
+/* Fondo para agregación seleccionada */
 .aggregation-option input[type="radio"]:checked {
-    background: rgba(255, 108, 171, 0.15);
-    border-color: #FF6CAB;
+    background: rgba(255, 108, 171, 0.15);  /* Fondo rosa más intenso */
+    border-color: #FF6CAB;            /* Borde rosa */
 }
 
+/* Etiqueta de agregación */
 .aggregation-label {
-    color: #B0B0B0;
+    color: #B0B0B0;                   /* Color gris */
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease;        /* Transición suave */
 }
 
+/* Contenedor de acciones del gráfico */
 .chart-actions {
     display: flex;
-    align-items: end;
+    align-items: end;                 /* Alineación inferior */
 }
 
+/* Botón de generación de gráfico */
 .generate-chart-btn {
-    background: linear-gradient(135deg, #FF6CAB 0%, #FF4A8A 100%);
+    background: linear-gradient(135deg, #FF6CAB 0%, #FF4A8A 100%);  /* Gradiente rosa */
     color: white;
     border: none;
-    padding: 15px 30px;
-    border-radius: 12px;
+    padding: 15px 30px;               /* Espaciado interno */
+    border-radius: 12px;              /* Bordes redondeados */
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 108, 171, 0.3);
-    width: 100%;
-    justify-content: center;
+    gap: 10px;                        /* Espaciado entre icono y texto */
+    transition: all 0.3s ease;        /* Transición suave */
+    box-shadow: 0 4px 15px rgba(255, 108, 171, 0.3);  /* Sombra rosa */
+    width: 100%;                      /* Ancho completo */
+    justify-content: center;          /* Centrado del contenido */
 }
 
+/* Efecto hover para el botón de gráfico */
 .generate-chart-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 108, 171, 0.4);
-    background: linear-gradient(135deg, #FF4A8A 0%, #FF2D7A 100%);
+    transform: translateY(-2px);      /* Elevación */
+    box-shadow: 0 6px 20px rgba(255, 108, 171, 0.4);  /* Sombra más intensa */
+    background: linear-gradient(135deg, #FF4A8A 0%, #FF2D7A 100%);  /* Gradiente más intenso */
 }
 
+/* Estado activo del botón */
 .generate-chart-btn:active {
-    transform: translateY(0);
+    transform: translateY(0);         /* Sin elevación al presionar */
 }
 
+/* Contenedor del gráfico */
 .chart-container {
-    position: relative;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 15px;
-    padding: 20px;
-    border: 1px solid rgba(255, 108, 171, 0.1);
-    min-height: 400px;
+    position: relative;               /* Posición relativa para elementos absolutos */
+    background: rgba(255, 255, 255, 0.02);  /* Fondo muy sutil */
+    border-radius: 15px;              /* Bordes redondeados */
+    padding: 20px;                    /* Espaciado interno */
+    border: 1px solid rgba(255, 108, 171, 0.1);  /* Borde sutil rosa */
+    min-height: 400px;                /* Altura mínima */
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-left: 80px; /* Add margin to avoid sidebar overlap */
+    justify-content: center;          /* Centrado del contenido */
+    margin-left: 80px;                /* Margen para evitar solapamiento con sidebar */
 }
 
+/* Canvas del gráfico de Chart.js */
 #timeSeriesChart {
-    max-width: 100%;
-    max-height: 400px;
+    max-width: 100%;                  /* Ancho máximo */
+    max-height: 400px;                /* Altura máxima */
 }
 
+/* Estado de carga del gráfico */
 .chart-loading {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;           /* Layout vertical */
     align-items: center;
-    gap: 20px;
-    color: #FF6CAB;
+    gap: 20px;                        /* Espaciado entre elementos */
+    color: #FF6CAB;                   /* Color rosa */
 }
 
+/* Spinner de carga */
 .loading-spinner {
-    width: 40px;
+    width: 40px;                      /* Tamaño cuadrado */
     height: 40px;
-    border: 4px solid rgba(255, 108, 171, 0.2);
-    border-top: 4px solid #FF6CAB;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+    border: 4px solid rgba(255, 108, 171, 0.2);  /* Borde sutil */
+    border-top: 4px solid #FF6CAB;    /* Borde superior rosa */
+    border-radius: 50%;               /* Forma circular */
+    animation: spin 1s linear infinite;  /* Animación de rotación */
 }
 
+/* Estado de error del gráfico */
 .chart-error {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;           /* Layout vertical */
     align-items: center;
-    gap: 15px;
-    color: #FF6B6B;
+    gap: 15px;                        /* Espaciado entre elementos */
+    color: #FF6B6B;                   /* Color rojo */
 }
 
+/* Icono de error */
 .chart-error i {
-    font-size: 2rem;
+    font-size: 2rem;                  /* Tamaño grande */
 }
 
-/* Responsive Design for Chart Section */
+/* ===== DISEÑO RESPONSIVO PARA SECCIÓN DE GRÁFICOS ===== */
+/* Media query para pantallas medianas */
 @media (max-width: 1200px) {
     .chart-controls {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;   /* Una sola columna */
         gap: 20px;
-        margin-left: 80px; /* Keep margin on medium screens */
+        margin-left: 80px;            /* Mantener margen en pantallas medianas */
     }
     
     .variable-options {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);  /* Dos columnas */
     }
 }
 
+/* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
     .chart-section {
-        margin: 20px 10px;
-        padding: 20px;
+        margin: 20px 10px;            /* Márgenes más pequeños */
+        padding: 20px;                /* Padding más pequeño */
     }
     
     .chart-header {
-        margin-left: 0; /* Remove margin on mobile */
+        margin-left: 0;               /* Sin margen en móviles */
     }
     
     .chart-controls {
-        margin-left: 0; /* Remove margin on mobile */
+        margin-left: 0;               /* Sin margen en móviles */
     }
     
     .chart-container {
-        min-height: 300px;
-        margin-left: 0; /* Remove margin on mobile */
+        min-height: 300px;            /* Altura mínima más pequeña */
+        margin-left: 0;               /* Sin margen en móviles */
     }
     
     .chart-header h2 {
-        font-size: 1.8rem;
+        font-size: 1.8rem;            /* Título más pequeño */
     }
     
     .variable-options {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;   /* Una sola columna */
     }
 }
 
-/* Transiciones suaves */
+/* ===== TRANSICIONES GLOBALES ===== */
+/* Transiciones suaves para todos los elementos */
 * {
     transition: all 0.3s ease;
 }
