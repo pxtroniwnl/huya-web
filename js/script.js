@@ -262,15 +262,14 @@ function generateSimulatedWeatherData(lat, lng, startDate, endDate) {
     const baseHumidity = 50 + (latFactor * 30);
     const basePressure = 1013 + (latFactor * 50);
     const baseWind = 5 + (latFactor * 10);
-    const baseUV = 3 + (latFactor * 8);
+    const basePrecipitation = 20 + (latFactor * 40);
     
     // Simular variaciones
     const temperature = Math.round((baseTemp + (Math.random() - 0.5) * 10) * 10) / 10;
     const humidity = Math.round((baseHumidity + (Math.random() - 0.5) * 20) * 10) / 10;
     const pressure = Math.round(basePressure + (Math.random() - 0.5) * 30);
     const windSpeed = Math.round((baseWind + (Math.random() - 0.5) * 5) * 10) / 10;
-    const uvIndex = Math.round((baseUV + (Math.random() - 0.5) * 3) * 10) / 10;
-    const airQuality = Math.round(20 + Math.random() * 50);
+    const precipitation = Math.round((basePrecipitation + (Math.random() - 0.5) * 30) * 10) / 10;
     
     // Determinar condición del clima
     let condition = "Cloudy & Sunny";
@@ -286,8 +285,7 @@ function generateSimulatedWeatherData(lat, lng, startDate, endDate) {
             humidity: humidity,
             pressure: pressure,
             wind_speed: windSpeed,
-            uv_index: uvIndex,
-            air_quality: airQuality
+            precipitation: precipitation
         },
         location: {
             latitude: lat,
@@ -307,23 +305,20 @@ function updateWeatherDisplay(data) {
     // Actualizar temperatura
     document.querySelector('.temperature').textContent = `${currentWeather.temperature}°C`;
     
-    // Actualizar métricas (en orden: Wind Speed, Humidity, UV, Pressure, Air Quality)
+    // Actualizar métricas (en orden: Precipitación, Humedad, Presión, Viento)
     const metricCards = document.querySelectorAll('.metric-card');
     
-    // Wind Speed
-    metricCards[0].querySelector('.metric-value').textContent = `${currentWeather.wind_speed} km/h`;
+    // Precipitación (índice 0)
+    metricCards[0].querySelector('.metric-value').textContent = `${currentWeather.precipitation || 25}%`;
     
-    // Humidity
+    // Humedad (índice 1)
     metricCards[1].querySelector('.metric-value').textContent = `${currentWeather.humidity}%`;
     
-    // UV Index
-    metricCards[2].querySelector('.metric-value').textContent = `${currentWeather.uv_index} UV`;
+    // Presión Atmosférica (índice 2)
+    metricCards[2].querySelector('.metric-value').textContent = `${currentWeather.pressure} hPa`;
     
-    // Pressure
-    metricCards[3].querySelector('.metric-value').textContent = `${currentWeather.pressure} hPa`;
-    
-    // Air Quality
-    metricCards[4].querySelector('.metric-value').textContent = `${currentWeather.air_quality} AQI`;
+    // Velocidad Viento (índice 3)
+    metricCards[3].querySelector('.metric-value').textContent = `${currentWeather.wind_speed} km/h`;
     
     // Actualizar condición del clima
     document.querySelector('.weather-condition').textContent = currentWeather.condition;
@@ -374,24 +369,30 @@ function convertMetric(selectElement) {
     let convertedValue = currentValue;
     
     switch(metricLabel) {
-        case 'Wind Speed':
+        case 'Porcentaje Precipitación':
+            if (selectedUnit === 'mm') {
+                convertedValue = (currentValue * 2.5).toFixed(1);
+            } else if (selectedUnit === 'in') {
+                convertedValue = (currentValue * 0.1).toFixed(1);
+            }
+            break;
+        case 'Velocidad Viento':
             if (selectedUnit === 'm/s') {
                 convertedValue = (currentValue / 3.6).toFixed(1);
             } else if (selectedUnit === 'mph') {
                 convertedValue = (currentValue * 0.621371).toFixed(1);
             }
             break;
-        case 'Pressure':
+        case 'Presión Atmosférica':
             if (selectedUnit === 'atm') {
                 convertedValue = (currentValue / 1013.25).toFixed(2);
             } else if (selectedUnit === 'bar') {
                 convertedValue = (currentValue / 1000).toFixed(2);
             }
             break;
-        case 'UV Radiation':
-            if (selectedUnit === 'Index') {
-                convertedValue = currentValue.toFixed(1);
-            }
+        case 'Porcentaje Humedad':
+            // La humedad siempre se mantiene en porcentaje
+            convertedValue = currentValue.toFixed(1);
             break;
     }
     
