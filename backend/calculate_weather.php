@@ -1,74 +1,79 @@
 <?php
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Content-Type: application/json'); // Respuesta en formato JSON
+header('Access-Control-Allow-Origin: *'); // Permitir CORS para cualquier origen (demo)
+header('Access-Control-Allow-Methods: POST'); // Solo aceptar método POST
+header('Access-Control-Allow-Headers: Content-Type'); // Permitir cabecera Content-Type
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['error' => 'Método no permitido']);
-    exit;
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') { // Verificar que el método sea POST
+    http_response_code(405); // 405: Method Not Allowed
+    echo json_encode(['error' => 'Método no permitido']); // Mensaje de error
+    exit; // Detener ejecución
 }
 
-// Obtener datos del POST
-$input = json_decode(file_get_contents('php://input'), true);
+// Obtener y decodificar cuerpo JSON del POST
+$input = json_decode(file_get_contents('php://input'), true); // true -> arreglo asociativo
 
-if (!$input) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Datos inválidos']);
-    exit;
+if (!$input) { // Validar que el JSON sea válido
+    http_response_code(400); // 400: Bad Request
+    echo json_encode(['error' => 'Datos inválidos']); // Notificar error de entrada
+    exit; // Detener ejecución
 }
 
-$startDate = $input['start_date'] ?? null;
-$endDate = $input['end_date'] ?? null;
-$latitude = $input['latitude'] ?? null;
-$longitude = $input['longitude'] ?? null;
+// Extraer parámetros principales del cuerpo
+$startDate = $input['start_date'] ?? null; // Fecha inicio (YYYY-MM-DD)
+$endDate = $input['end_date'] ?? null; // Fecha fin (YYYY-MM-DD)
+$latitude = $input['latitude'] ?? null; // Latitud
+$longitude = $input['longitude'] ?? null; // Longitud
 
-// Validar datos requeridos
-if (!$startDate || !$endDate || !$latitude || !$longitude) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Faltan datos requeridos']);
-    exit;
+// Validar presencia de todos los campos requeridos
+if (!$startDate || !$endDate || !$latitude || !$longitude) { // Falta al menos uno
+    http_response_code(400); // 400: Bad Request
+    echo json_encode(['error' => 'Faltan datos requeridos']); // Mensaje de error
+    exit; // Detener ejecución
 }
 
-// Validar fechas
-$start = new DateTime($startDate);
-$end = new DateTime($endDate);
+// Validar rango de fechas
+$start = new DateTime($startDate); // Crear objeto fecha inicio
+$end = new DateTime($endDate); // Crear objeto fecha fin
 
-if ($start > $end) {
-    http_response_code(400);
-    echo json_encode(['error' => 'La fecha de inicio no puede ser posterior a la fecha de fin']);
-    exit;
+if ($start > $end) { // La fecha inicio no debe ser posterior a la fin
+    http_response_code(400); // 400: Bad Request
+    echo json_encode(['error' => 'La fecha de inicio no puede ser posterior a la fecha de fin']); // Error específico
+    exit; // Detener ejecución
 }
 
-try {
-    // Ejecutar script Python
-    $pythonScript = 'python weather_processor.py ' . escapeshellarg($latitude) . ' ' . escapeshellarg($longitude) . ' ' . escapeshellarg($startDate) . ' ' . escapeshellarg($endDate);
+try { // Bloque principal protegido ante errores de ejecución
+    // Construir comando para ejecutar script Python con parámetros escapados
+    $pythonScript = 'python weather_processor.py ' .
+        escapeshellarg($latitude) . ' ' .
+        escapeshellarg($longitude) . ' ' .
+        escapeshellarg($startDate) . ' ' .
+        escapeshellarg($endDate); // Evita inyección en shell
     
-    $output = shell_exec($pythonScript);
+    $output = shell_exec($pythonScript); // Ejecutar y capturar salida estándar
     
-    if ($output === null) {
-        throw new Exception('Error al ejecutar el script de Python');
+    if ($output === null) { // Verificar que el comando se ejecutó
+        throw new Exception('Error al ejecutar el script de Python'); // Lanzar excepción si falla
     }
     
-    $weatherData = json_decode($output, true);
+    $weatherData = json_decode($output, true); // Decodificar JSON producido por Python
     
-    if (!$weatherData) {
+    if (!$weatherData) { // Validar que el JSON sea válido/no vacío
         throw new Exception('Error al procesar los datos meteorológicos');
     }
     
-    // Respuesta exitosa
+    // Responder éxito con los datos procesados
     echo json_encode([
-        'success' => true,
-        'data' => $weatherData,
-        'message' => 'Cálculo completado exitosamente'
+        'success' => true, // Indicador de éxito
+        'data' => $weatherData, // Payload con datos meteorológicos
+        'message' => 'Cálculo completado exitosamente' // Mensaje informativo
     ]);
     
-} catch (Exception $e) {
-    http_response_code(500);
+} catch (Exception $e) { // Manejo de errores globales
+    http_response_code(500); // 500: Internal Server Error
     echo json_encode([
-        'error' => 'Error interno del servidor',
-        'message' => $e->getMessage()
+        'error' => 'Error interno del servidor', // Mensaje genérico
+        'message' => $e->getMessage() // Detalle del error para diagnóstico
     ]);
 }
 ?>
