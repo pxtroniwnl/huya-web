@@ -468,9 +468,91 @@ document.addEventListener('DOMContentLoaded', function() {
 let timeSeriesChart = null;
 
 // Initialize chart functionality when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    await preloadResultadosJson();
     initializeChartFunctionality();
+    if (window.resultadosData && window.resultadosData.medias) {
+        applyMediasToMetrics(window.resultadosData.medias);
+    }
 });
+
+// Cargar y cachear backend/resultados.json
+async function preloadResultadosJson() {
+    try {
+        const res = await fetch('../backend/resultados.json', { cache: 'no-cache' });
+        if (!res.ok) return;
+        const data = await res.json();
+        window.resultadosData = data;
+    } catch (e) {
+        console.warn('No se pudo cargar resultados.json (demo seguirá con datos simulados)', e);
+    }
+}
+
+// Aplicar medias a las metric cards y a la temperatura principal
+function applyMediasToMetrics(medias) {
+    try {
+        const temperatureEl = document.querySelector('.current-weather-card .temperature');
+        if (temperatureEl && typeof medias['Temperatura (°C)'] !== 'undefined') {
+            temperatureEl.textContent = `${Number(medias['Temperatura (°C)']).toFixed(1)}°C`;
+        }
+
+        const metricCards = document.querySelectorAll('.weather-metrics .metric-card');
+        // Orden esperado: Precipitación, Humedad, Presión, Viento
+        const mapping = [
+            { key: 'Precipitacion (%)', suffix: '%' },
+            { key: 'Humedad (%)', suffix: '%' },
+            { key: 'PresionAtm (hPa)', suffix: ' hPa' },
+            { key: 'Viento (km/h)', suffix: ' km/h' },
+        ];
+        metricCards.forEach((card, idx) => {
+            const valueEl = card.querySelector('.metric-value');
+            const map = mapping[idx];
+            if (valueEl && map && typeof medias[map.key] !== 'undefined') {
+                const val = medias[map.key];
+                const formatted = map.suffix.trim() === '%' ? `${val.toFixed(1)}%` : `${val.toFixed(1)}${map.suffix}`;
+                valueEl.textContent = formatted;
+            }
+        });
+    } catch (e) {
+        console.warn('No se pudieron aplicar medias a métricas', e);
+    }
+}
+
+// Abstracción de obtención de resultados (backend real o JSON de ejemplo)
+async function fetchResultsFromBackend(lat, lng, startDate, endDate) {
+    // En producción, cambiar a POST de API real
+    // return fetch('/api/process', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ latitude: lat, longitude: lng, start_date: startDate, end_date: endDate })}).then(r => r.json());
+
+    try {
+        const res = await fetch('../backend/resultados.json', { cache: 'no-cache' });
+        if (!res.ok) return null;
+        const data = await res.json();
+        if (Array.isArray(data.datos)) {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const filtered = data.datos.filter(r => {
+                const d = new Date(r.Fecha);
+                return d >= start && d <= end;
+            });
+            const out = { ...data, datos: filtered };
+            if (!data.medias && filtered.length) {
+                const avg = (arr, key) => arr.reduce((s, r) => s + Number(r[key] || 0), 0) / arr.length;
+                out.medias = {
+                    'Precipitacion (%)': avg(filtered, 'Precipitacion (%)'),
+                    'Viento (km/h)': avg(filtered, 'Viento (km/h)'),
+                    'Humedad (%)': avg(filtered, 'Humedad (%)'),
+                    'PresionAtm (hPa)': avg(filtered, 'PresionAtm (hPa)'),
+                    'Temperatura (°C)': avg(filtered, 'Temperatura (°C)')
+                };
+            }
+            return out;
+        }
+        return data;
+    } catch (e) {
+        console.warn('Falla al cargar resultados.json. Se usará simulación.', e);
+        return null;
+    }
+}
 
 function initializeChartFunctionality() {
     const generateBtn = document.querySelector('.generate-chart-btn');
@@ -504,6 +586,20 @@ async function generateTimeSeriesChart() {
     hideChartError();
 
     try {
+        // Obtener/Simular resultados del backend para el rango y ubicación y actualizar métricas con "medias"
+        const backendResults = await fetchResultsFromBackend(
+            window.mapInstance._lastClick.lat,
+            window.mapInstance._lastClick.lng,
+            startDate,
+            endDate
+        );
+        if (backendResults) {
+            window.resultadosData = backendResults; // cache global para series
+            if (backendResults.medias) {
+                applyMediasToMetrics(backendResults.medias);
+            }
+        }
+
         // Generate time series data
         const chartData = await generateTimeSeriesData(
             window.mapInstance._lastClick.lat,
@@ -526,24 +622,43 @@ async function generateTimeSeriesChart() {
 }
 
 async function generateTimeSeriesData(lat, lng, startDate, endDate, variable, aggregation) {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Generate realistic time series data based on variable and aggregation
+    await new Promise(resolve => setTimeout(resolve, 400));
+
+    // Si hay resultados.json, usarlo como fuente
+    if (window.resultadosData && Array.isArray(window.resultadosData.datos)) {
+        const varMap = {
+            temperature: 'Temperatura (°C)',
+            humidity: 'Humedad (%)',
+            wind: 'Viento (km/h)',
+            pressure: 'PresionAtm (hPa)',
+            precipitation: 'Precipitacion (%)',
+            'air-quality': null,
+            uv: null
+        };
+        const key = varMap[variable];
+        const all = window.resultadosData.datos || [];
+        // Filtrar por rango de fechas inclusivo
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        const filtered = all.filter(r => {
+            const d = new Date(r.Fecha);
+            return d >= start && d <= end;
+        });
+        if (key) {
+            const labels = filtered.map(r => new Date(r.Fecha)).map(d => formatDateForChart(d, aggregation));
+            const values = filtered.map(r => Number(r[key]));
+            return { labels, data: values, variable, aggregation, location: { lat, lng } };
+        }
+        // Si variable no mapeada en json, continuar con simulación
+    }
+
+    // Fallback: datos simulados
     const start = new Date(startDate);
     const end = new Date(endDate);
     const dataPoints = generateDataPoints(start, end, aggregation);
-    
     const labels = dataPoints.map(point => point.date);
     const values = dataPoints.map(point => point.value);
-    
-    return {
-        labels: labels,
-        data: values,
-        variable: variable,
-        aggregation: aggregation,
-        location: { lat, lng }
-    };
+    return { labels, data: values, variable, aggregation, location: { lat, lng } };
 }
 
 function generateDataPoints(startDate, endDate, aggregation) {
