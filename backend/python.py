@@ -23,10 +23,11 @@ if len(sys.argv) > 1:
     fecha_fin = params['fecha_fin'] # FRONTEND
 else:
     # Valores por defecto para pruebas
-    latitud = 10.43 # FRONTEND
-    longitud = -75.54 # FRONTEND
-    fecha_inicio = "2025-10-05" # FRONTEND
-    fecha_fin = "2025-10-11" # FRONTEND
+    # Valores por defecto si no se proporcionan desde el frontend
+    latitud = latitud if latitud else 10.43
+    longitud = longitud if longitud else -75.54
+    fecha_inicio = fecha_inicio if fecha_inicio else "2025-10-05"
+    fecha_fin = fecha_fin if fecha_fin else "2025-10-11"
 
 auth = earthaccess.login(strategy="prompt") # iniciar sesion en earthdata
 
