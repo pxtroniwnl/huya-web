@@ -229,13 +229,16 @@ async function calculateWeather() {
         }
         
     } catch (error) {
-        console.log('Using simulation mode:', error.message);
+        console.log('Error conectando con backend:', error.message);
+        
+        // Mostrar error específico
+        showNotification(`Error: ${error.message} - Instala XAMPP para usar el backend real`, 'error');
         
         // Fallback: usar datos simulados
         try {
             const simulatedData = generateSimulatedWeatherData(map._lastClick.lat, map._lastClick.lng, startDate, endDate);
             updateWeatherDisplay(simulatedData);
-            showNotification('Calculation completed (Simulation mode)', 'info');
+            showNotification('Usando datos simulados (Backend no disponible)', 'info');
         } catch (simError) {
             console.error('Error in simulation:', simError);
             showNotification('Error calculating weather', 'error');

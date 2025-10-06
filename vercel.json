@@ -1,0 +1,8 @@
+{
+  "builds": [
+    {
+      "src": "backend/python.py",
+      "use": "@vercel/python"
+    }
+  ]
+}
