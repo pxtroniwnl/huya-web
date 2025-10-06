@@ -29,7 +29,16 @@ else:
     fecha_inicio = fecha_inicio if fecha_inicio else "2025-10-05"
     fecha_fin = fecha_fin if fecha_fin else "2025-10-11"
 
-auth = earthaccess.login(strategy="prompt") # iniciar sesion en earthdata
+# Obtener credenciales desde variables de entorno
+import os
+username = os.getenv('EARTHDATA_USERNAME')
+password = os.getenv('EARTHDATA_PASSWORD')
+
+if username and password:
+    auth = earthaccess.login(username=username, password=password)
+else:
+    # Fallback para desarrollo local
+    auth = earthaccess.login(persist=True)
 
 # definir un area rectangular alrededor del lugar (0.3° en cada direccion)
 area_evaluada = (
