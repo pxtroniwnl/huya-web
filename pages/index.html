@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Configuración básica del documento HTML5 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huya Weather - Meteorological Dashboard</title>
+    
+    <!-- Favicon y iconos para diferentes dispositivos -->
+    <link rel="icon" type="image/png" href="../images/logo-huya.png">
+    <link rel="shortcut icon" type="image/png" href="../images/logo-huya.png">
+    <link rel="apple-touch-icon" href="../images/logo-huya.png">
+    
+    <!-- Hojas de estilo CSS locales -->
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/download-styles.css">
+    
+    <!-- Librerías externas CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Fixed sidebar navigation -->
+    <div class="sidebar">
+        <!-- Main dashboard icon -->
+        <div class="sidebar-icon">
+            <i class="fas fa-th"></i>
+        </div>
+        <!-- Data download icon -->
+        <div class="sidebar-icon">
+            <i class="fas fa-download"></i>
+        </div>
+        <!-- Team info icon -->
+        <div class="sidebar-icon">
+            <i class="fas fa-users"></i>
+        </div>
+    </div>
+
+    <!-- Main application container -->
+    <div class="main-container">
+        <!-- Application header -->
+        <header class="header">
+            <!-- Left header section with logo and title -->
+            <div class="header-left">
+                <div class="logo">
+                    <!-- Logo icon container -->
+                    <div class="logo-icon">
+                        <img src="../images/logo-huya.png" alt="Huya Weather Logo" class="logo-image">
+                    </div>
+                    <!-- Logo text container -->
+                    <div class="logo-text">
+                        <h1>Huya Weather</h1>
+                        <p>Meteorological prediction dashboard</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right header section with action button -->
+            <div class="header-right">
+                <button class="calculate-btn">Calculate</button>
+            </div>
+        </header>
+
+        <!-- Main application content -->
+        <div class="main-content">
+            <!-- Left column with controls and metrics -->
+            <div class="left-column">
+                <!-- Date selection for time series analysis -->
+                <div class="date-selection">
+                    <!-- Start date input group -->
+                    <div class="date-input-group">
+                        <label for="start-date">Start Date</label>
+                        <div class="date-input-wrapper">
+                            <input type="date" id="start-date" value="2025-01-01">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <!-- End date input group -->
+                    <div class="date-input-group">
+                        <label for="end-date">End Date</label>
+                        <div class="date-input-wrapper">
+                            <input type="date" id="end-date" value="2025-01-04">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current weather card with main information -->
+                <div class="current-weather-card">
+                    <!-- Current weather icon -->
+                    <div class="weather-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <!-- Current temperature -->
+                    <div class="temperature">31°C</div>
+                    <!-- Current weather condition -->
+                    <div class="weather-condition">Cloudy & Sunny</div>
+                    <!-- Location info -->
+                    <div class="location-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>6.2454, 294.1825</span>
+                    </div>
+                    <!-- Current date info -->
+                    <div class="date-info">
+                        <i class="fas fa-calendar"></i>
+                        <span>Sat, Oct 4</span>
+                    </div>
+                </div>
+
+                <div id="progressOverlay" class="progress-overlay" style="display:none">
+                    <div class="progress-container">
+                        <div class="progress-label"><span id="progressStage">Iniciando...</span></div>
+                        <div class="progress-bar-track">
+                            <div id="progressFill" class="progress-bar-fill" style="width:0%"></div>
+                        </div>
+                        <div class="progress-percent"><span id="progressPercent">0</span>%</div>
+                    </div>
+                </div>
+
+                <!-- 2x2 grid of weather metrics -->
+                <div class="weather-metrics">
+                    <!-- Metric card: Precipitation Percentage -->
+                    <div class="metric-card">
+                        <!-- Precipitation icon -->
+                        <div class="metric-icon precipitation">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <!-- Metric content -->
+                        <div class="metric-content">
+                            <div class="metric-label">Precipitation Percentage</div>
+                            <div class="metric-value">25%</div>
+                        </div>
+                        <!-- Unit selector for the metric -->
+                        <div class="metric-unit">
+                            <select>
+                                <option value="%">%</option>
+                                <option value="mm">mm</option>
+                                <option value="in">in</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Metric card: Humidity Percentage -->
+                    <div class="metric-card">
+                        <!-- Humidity icon -->
+                        <div class="metric-icon humidity">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <!-- Metric content -->
+                        <div class="metric-content">
+                            <div class="metric-label">Humidity Percentage</div>
+                            <div class="metric-value">49.9%</div>
+                        </div>
+                        <!-- Unit selector for the metric -->
+                        <div class="metric-unit">
+                            <select>
+                                <option value="%">%</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Metric card: Atmospheric Pressure -->
+                    <div class="metric-card">
+                        <!-- Pressure icon -->
+                        <div class="metric-icon pressure">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <!-- Metric content -->
+                        <div class="metric-content">
+                            <div class="metric-label">Atmospheric Pressure</div>
+                            <div class="metric-value">1013 hPa</div>
+                        </div>
+                        <!-- Unit selector for the metric -->
+                        <div class="metric-unit">
+                            <select>
+                                <option value="hPa">hPa</option>
+                                <option value="atm">atm</option>
+                                <option value="bar">bar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Metric card: Wind Speed -->
+                    <div class="metric-card">
+                        <!-- Wind icon -->
+                        <div class="metric-icon wind">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <!-- Metric content -->
+                        <div class="metric-content">
+                            <div class="metric-label">Wind Speed</div>
+                            <div class="metric-value">5.8 km/h</div>
+                        </div>
+                        <!-- Unit selector for the metric -->
+                        <div class="metric-unit">
+                            <select>
+                                <option value="km/h">km/h</option>
+                                <option value="m/s">m/s</option>
+                                <option value="mph">mph</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column with interactive map -->
+            <div class="right-column">
+                <!-- Map section to select location -->
+                <div class="map-section">
+                    <h3>Select Location</h3>
+                    <p>Click on the map to place a pin</p>
+                    <!-- Contenedor del mapa de Leaflet -->
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de análisis de series temporales -->
+    <div class="chart-section">
+        <!-- Cabecera de la sección de gráficos -->
+        <div class="chart-header">
+            <h2>Time Series Analysis</h2>
+            <p>Visualize meteorological data trends over time</p>
+        </div>
+        
+        <!-- Controles para configuración de gráficos -->
+        <div class="chart-controls">
+            <!-- Selección de variable meteorológica para visualizar -->
+            <div class="variable-selection">
+                <h3>Select Variable</h3>
+                <div class="variable-options">
+                    <!-- Option: Precipitation Percentage (default selected) -->
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="precipitation" checked>
+                        <span class="variable-label">
+                            <i class="fas fa-cloud-rain"></i>
+                            Precipitation Percentage
+                        </span>
+                    </label>
+                    <!-- Option: Humidity Percentage -->
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="humidity">
+                        <span class="variable-label">
+                            <i class="fas fa-tint"></i>
+                            Humidity Percentage
+                        </span>
+                    </label>
+                    <!-- Option: Atmospheric Pressure -->
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="pressure">
+                        <span class="variable-label">
+                            <i class="fas fa-chart-line"></i>
+                            Atmospheric Pressure
+                        </span>
+                    </label>
+                    <!-- Option: Wind Speed -->
+                    <label class="variable-option">
+                        <input type="radio" name="chart-variable" value="wind">
+                        <span class="variable-label">
+                            <i class="fas fa-wind"></i>
+                            Wind Speed
+                        </span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Selección de agregación temporal para los datos -->
+            <div class="time-aggregation">
+                <h3>Time Aggregation</h3>
+                <div class="aggregation-options">
+                    <!-- Opción: Agregación diaria (seleccionada por defecto) -->
+                    <label class="aggregation-option">
+                        <input type="radio" name="time-aggregation" value="daily" checked>
+                        <span class="aggregation-label">Daily</span>
+                    </label>
+                    <!-- Opción: Agregación semanal -->
+                    <label class="aggregation-option">
+                        <input type="radio" name="time-aggregation" value="weekly">
+                        <span class="aggregation-label">Weekly</span>
+                    </label>
+                    <!-- Opción: Agregación mensual -->
+                    <label class="aggregation-option">
+                        <input type="radio" name="time-aggregation" value="monthly">
+                        <span class="aggregation-label">Monthly</span>
+                    </label>
+                    <!-- Opción: Agregación anual -->
+                    <label class="aggregation-option">
+                        <input type="radio" name="time-aggregation" value="yearly">
+                        <span class="aggregation-label">Yearly</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Botón de acción para generar gráfico -->
+            <div class="chart-actions">
+                <button class="generate-chart-btn">
+                    <i class="fas fa-chart-line"></i>
+                    Generate Chart
+                </button>
+            </div>
+        </div>
+        
+        <!-- Contenedor del gráfico con estados de carga y error -->
+        <div class="chart-container">
+            <!-- Canvas para renderizar el gráfico de Chart.js -->
+            <canvas id="timeSeriesChart"></canvas>
+            <!-- Indicador de carga mientras se genera el gráfico -->
+            <div class="chart-loading" id="chartLoading" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Generating chart...</p>
+            </div>
+            <!-- Mensaje de error en caso de fallo al generar gráfico -->
+            <div class="chart-error" id="chartError" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Error generating chart. Please try again.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts JavaScript externos y locales -->
+    <!-- Librería Leaflet para mapas interactivos -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Librería Chart.js para visualización de gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Script principal de la aplicación -->
+    <script src="../js/script.js"></script>
+</body>
+</html>

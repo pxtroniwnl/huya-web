@@ -1,0 +1,25 @@
+RewriteEngine On
+
+# Redirigir la raíz al dashboard principal
+RewriteRule ^$ pages/index.html [L]
+
+# Redirigir rutas sin extensión a las páginas correspondientes
+RewriteRule ^dashboard/?$ pages/index.html [L]
+RewriteRule ^about/?$ pages/about.html [L]
+RewriteRule ^download/?$ pages/download.html [L]
+
+# Permitir acceso directo a archivos estáticos
+RewriteRule ^(images|styles|js|backend|docs)/ - [L]
+
+# Redirigir archivos PHP al backend
+RewriteRule ^calculate_weather\.php$ backend/calculate_weather.php [L]
+
+# Configuración de CORS para APIs
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# Configuración de tipos MIME
+AddType application/javascript .js
+AddType text/css .css
+AddType application/json .json
