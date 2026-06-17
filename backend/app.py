@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import logging
 from datetime import datetime
@@ -6,6 +7,7 @@ from datetime import datetime
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from python import run_prediction
 
 LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'app.log')
@@ -150,7 +152,6 @@ def serve_static(filename):
 
 
 if __name__ == '__main__':
-    from python import run_prediction
     print("Iniciando API Flask...")
     logger.info("Iniciando servidor Flask")
     print("API disponible en: http://localhost:5000")
